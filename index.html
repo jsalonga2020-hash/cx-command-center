@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A customer support operations dashboard for ecommerce teams.">
+  <title>CX Command Center</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">CX</span><span>Command Center</span></div>
+    <nav aria-label="Main navigation">
+      <button class="nav-item active">Overview</button>
+      <button class="nav-item">Tickets <span id="nav-count" class="badge"></span></button>
+      <button class="nav-item">Orders</button>
+      <button class="nav-item">Insights</button>
+    </nav>
+    <div class="sidebar-note">
+      <span class="status-dot"></span>
+      Demo workspace<br><small>Sample data only</small>
+    </div>
+  </aside>
+
+  <main>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">ECOMMERCE OPERATIONS</p>
+        <h1>Good morning, Jerome</h1>
+        <p class="subtitle">Here’s what needs attention before customers have to ask.</p>
+      </div>
+      <div class="header-actions">
+        <button id="reset-demo" class="button secondary">Reset demo</button>
+        <button id="export-summary" class="button primary">Copy daily summary</button>
+      </div>
+    </header>
+
+    <section id="metrics" class="metric-grid" aria-label="Support metrics"></section>
+
+    <section class="workspace">
+      <div class="queue-card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">PRIORITY QUEUE</p>
+            <h2>Customer issues</h2>
+          </div>
+          <span id="result-count" class="result-count"></span>
+        </div>
+
+        <div class="filters">
+          <label class="search-field">
+            <span class="sr-only">Search tickets</span>
+            <input id="search" type="search" placeholder="Search customer, order, or issue">
+          </label>
+          <select id="status-filter" aria-label="Filter by status">
+            <option value="all">All statuses</option>
+            <option value="open">Open</option>
+            <option value="pending">Pending</option>
+            <option value="snoozed">Snoozed</option>
+            <option value="resolved">Resolved</option>
+          </select>
+          <select id="channel-filter" aria-label="Filter by channel">
+            <option value="all">All channels</option>
+            <option value="email">Email</option>
+            <option value="chat">Chat</option>
+            <option value="social">Social</option>
+          </select>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Priority</th><th>Customer</th><th>Issue</th><th>Order</th><th>Age</th><th>Status</th></tr></thead>
+            <tbody id="ticket-rows"></tbody>
+          </table>
+        </div>
+        <div id="empty-state" class="empty-state" hidden>No tickets match these filters.</div>
+      </div>
+
+      <aside id="detail-panel" class="detail-card" aria-live="polite">
+        <div class="empty-detail">
+          <div class="empty-icon">↗</div>
+          <h2>Select a ticket</h2>
+          <p>Open an issue to see customer history, risk signals, and the recommended next action.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="insight-grid">
+      <article class="insight-card">
+        <p class="eyebrow">PATTERN DETECTED</p>
+        <h2>Where customers are getting stuck</h2>
+        <div id="issue-bars" class="issue-bars"></div>
+      </article>
+      <article class="insight-card action-card">
+        <p class="eyebrow">TODAY’S IMPROVEMENT</p>
+        <h2>Prevent “Where is my order?” tickets</h2>
+        <p>Three open conversations were caused by missing shipping updates. Add a proactive delay notification when fulfillment is over 48 hours.</p>
+        <div class="impact"><strong>3 tickets</strong><span>could have been prevented today</span></div>
+      </article>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="core.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
