@@ -121,6 +121,21 @@ function showToast(message) {
 
 function renderAll() { renderMetrics(); renderQueue(); renderInsights(); }
 
+function activateNavigation(targetId) {
+  const target = document.getElementById(targetId);
+  if (!target) return;
+  document.querySelectorAll(".nav-item").forEach((item) => {
+    const active = item.dataset.target === targetId;
+    item.classList.toggle("active", active);
+    item.setAttribute("aria-current", active ? "page" : "false");
+  });
+  target.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+document.querySelectorAll(".nav-item[data-target]").forEach((item) => {
+  item.addEventListener("click", () => activateNavigation(item.dataset.target));
+});
+
 [$("#search"), $("#status-filter"), $("#channel-filter")].forEach((control) => control.addEventListener("input", renderQueue));
 $("#reset-demo").addEventListener("click", () => { tickets = structuredClone(seedTickets); selectedId = null; saveTickets(); renderAll(); detailPanel.innerHTML = '<div class="empty-detail"><div class="empty-icon">↗</div><h2>Select a ticket</h2><p>Open an issue to see customer history, risk signals, and the recommended next action.</p></div>'; showToast("Demo data restored"); });
 $("#export-summary").addEventListener("click", async () => { await navigator.clipboard.writeText(dailySummary()); showToast("Daily summary copied"); });

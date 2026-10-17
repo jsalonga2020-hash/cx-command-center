@@ -11,10 +11,10 @@
   <aside class="sidebar">
     <div class="brand"><span class="brand-mark">CX</span><span>Command Center</span></div>
     <nav aria-label="Main navigation">
-      <button class="nav-item active">Overview</button>
-      <button class="nav-item">Tickets <span id="nav-count" class="badge"></span></button>
-      <button class="nav-item">Orders</button>
-      <button class="nav-item">Insights</button>
+      <button class="nav-item active" data-target="overview">Overview</button>
+      <button class="nav-item" data-target="tickets">Tickets <span id="nav-count" class="badge"></span></button>
+      <button class="nav-item" data-target="orders">Orders</button>
+      <button class="nav-item" data-target="insights">Insights</button>
     </nav>
     <div class="sidebar-note">
       <span class="status-dot"></span>
@@ -23,7 +23,7 @@
   </aside>
 
   <main>
-    <header class="topbar">
+    <header id="overview" class="topbar view-anchor">
       <div>
         <p class="eyebrow">ECOMMERCE OPERATIONS</p>
         <h1>Good morning, Jerome</h1>
@@ -37,7 +37,7 @@
 
     <section id="metrics" class="metric-grid" aria-label="Support metrics"></section>
 
-    <section class="workspace">
+    <section id="tickets" class="workspace view-anchor">
       <div class="queue-card">
         <div class="section-heading">
           <div>
@@ -85,7 +85,28 @@
       </aside>
     </section>
 
-    <section class="insight-grid">
+    <section id="orders" class="orders-card view-anchor">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">ORDER WATCHLIST</p>
+          <h2>Fulfillment exceptions</h2>
+        </div>
+        <span class="result-count">4 need review</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Order</th><th>Customer</th><th>Exception</th><th>Fulfillment</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td>#18451</td><td>Chris Morgan</td><td>Carrier scan delayed</td><td><span class="status pending">At risk</span></td><td>Check with 3PL</td></tr>
+            <tr><td>#18456</td><td>Liam Patel</td><td>Address change requested</td><td><span class="status open">Unfulfilled</span></td><td>Hold and update</td></tr>
+            <tr><td>#18408</td><td>Emma Wilson</td><td>No tracking movement</td><td><span class="status snoozed">Investigating</span></td><td>Contact carrier</td></tr>
+            <tr><td>#18397</td><td>Avery Brooks</td><td>Wrong item delivered</td><td><span class="status pending">Replacement</span></td><td>Verify inventory</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="insights" class="insight-grid view-anchor">
       <article class="insight-card">
         <p class="eyebrow">PATTERN DETECTED</p>
         <h2>Where customers are getting stuck</h2>
